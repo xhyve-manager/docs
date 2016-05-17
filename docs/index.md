@@ -17,7 +17,7 @@ You need to be running OS X 10.10 and above.
 To install:
 
 ``` shell
-git clone https://github.com/0x414A/xhyve-manager
+git clone https://github.com/xhyve-manager/xhyve-manager
 cd xhyve-manager
 make install
 ```
