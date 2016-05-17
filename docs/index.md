@@ -1,4 +1,4 @@
-# [xhyve-manager](https://github.com/0x414A/xhyve-manager)
+# [xhyve-manager](https://github.com/xhyve-manager/xhyve-manager)
 
 A simple utility to manage the lifecycle of [xhyve](https://xhyve.org) Virtual Machines on OS X 10.10 and above.
 
