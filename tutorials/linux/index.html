@@ -79,7 +79,12 @@
         
             <ul>
             
-                <li class="toctree-l3"><a href="#installing-ubuntu-server-1604-lts-vm">Installing Ubuntu Server 16.04 LTS VM</a></li>
+                <li class="toctree-l3"><a href="#the-usual-extraction-of-boot-images">The Usual Extraction of Boot Images</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#installing-ubuntu-server-1604-lts">Installing Ubuntu Server 16.04 LTS</a></li>
+                
+                    <li><a class="toctree-l4" href="#creating-an-xhyve-machine">Creating an xhyve machine</a></li>
                 
             
             </ul>
@@ -130,26 +135,34 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installing-ubuntu-server-1604-lts-vm">Installing Ubuntu Server 16.04 LTS VM</h1>
-<p><a href="http://www.ubuntu.com/download/server">Download</a> Ubuntu Server 16.04 LTS.</p>
-<p>Currently, in order for you first have to extract the kernel and initrd. OS X can't natively mount Linux live ISOs, so you have to run the following:</p>
+                <h1 id="the-usual-extraction-of-boot-images">The Usual Extraction of Boot Images</h1>
+<p>Currently, in order to start a Linux live environment in xhyve, first have to extract the kernel and initrd from the ISO and pass them as arguments to <code>-f kexec</code>.</p>
+<p>To do that, you have to do these steps:</p>
+<p>OS X can't natively mount Linux live ISOs, so you have to run the following:</p>
 <pre><code class="shell">xhyve-manager extract ~/Downloads/ubuntu-16.04-server-amd64.iso
 open /tmp/tmp.iso
 </code></pre>
 
 <p>This will mount a disk <code>Ubuntu-Server 16</code>.</p>
+<p>You'll then need to copy <code>vmlinuz</code> and <code>initrd.gz</code> from <code>/Volumes/Ubuntu-Server 16</code>.</p>
+<p>If this seems like a lot of work, I agree! That's why I've bundled an ubuntu/16.04 <em>starter</em>, which is just a folder containing the kernel and init disks that are necessary. This is automatically configured when you choose the ubuntu starter kit. </p>
+<h1 id="installing-ubuntu-server-1604-lts">Installing Ubuntu Server 16.04 LTS</h1>
+<p><a href="http://www.ubuntu.com/download/server">Download</a> Ubuntu Server 16.04 LTS.</p>
+<h2 id="creating-an-xhyve-machine">Creating an xhyve machine</h2>
 <pre><code class="shell">xhyve-manager create
 </code></pre>
 
 <p>This will invoke a series of prompts with which you can do the initial configuration for the virtual machine.</p>
 <p><a href="https://asciinema.org/a/epd4ajqwi6pfcx7z6u5kqnhmx"><img alt="asciicast" src="https://asciinema.org/a/epd4ajqwi6pfcx7z6u5kqnhmx.png" /></a></p>
+<p>Choose the ubuntu 16.04 starter kit when you get to that part.</p>
+<p><img alt="starter" src="../../images/starter.png" /></p>
 <p>Specify a CD to mount:</p>
 <p><img alt="CD" src="../../images/draganddrop.gif" /></p>
 <p>At the end, you'll be prompted to edit the configuration. Type in <code>y</code> to invoke your favorite editor (well, whatever's set to your <code>$EDITOR</code>).</p>
 <p>Once you've finished installation, change the boot options to these:</p>
 <pre><code class="apacheconf">[boot]
-kernel = boot/vmlinuz-4.4.0-21-generic
-initrd = boot/initrd.img-4.4.0-21-generic
+kernel = /usr/local/share/xhyve-manager/ubuntu/16.04/boot/vmlinuz-4.4.0-21-generic
+initrd = /usr/local/share/xhyve-manager/ubuntu/16.04/boot/initrd.img-4.4.0-21-generic
 options = earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro
 </code></pre>
               
