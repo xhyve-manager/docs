@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="a simple utility to manage the lifecycle of xhyve virtual machines">
+  
+  
+  <title>xhyve-manager</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> xhyve-manager</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Home</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#xhyve-manager">xhyve-manager</a></li>
+                
+                    <li><a class="toctree-l4" href="#commands">Commands</a></li>
+                
+                    <li><a class="toctree-l4" href="#installation">Installation</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorials</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="tutorials/bsd/">Bsd</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="tutorials/linux/">Linux</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">xhyve-manager</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Home</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/0x414A/xhyve-manager/" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="xhyve-manager"><a href="https://github.com/0x414A/xhyve-manager">xhyve-manager</a></h1>
+<p>A simple utility to manage the lifecycle of <a href="https://xhyve.org">xhyve</a> Virtual Machines on OS X 10.10 and above.</p>
+<h2 id="commands">Commands</h2>
+<ul>
+<li><code>xhyve-manager setup</code> - setup up the host machine's NFS.</li>
+<li><code>xhyve-manager create</code> - Create a new virtual machine.</li>
+<li><code>xhyve-manager start [machine-name]</code> - start a virtual machine (must be run as root)</li>
+<li><code>xhyve-manager edit [machine-name]</code> - edit the virtual machine configuration.</li>
+<li><code>xhyve-manager extract [path-to-iso]</code> - helper command to convert a Linux ISO to something OS X can read</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>You need to be running OS X 10.10 and above.</p>
+<p>To install:</p>
+<pre><code class="shell">git clone https://github.com/0x414A/xhyve-manager
+cd xhyve-manager
+make install
+</code></pre>
+
+<p>Then, you'll need to run <code>setup</code> to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.</p>
+<pre><code class="shell">sudo xhyve-manager setup
+</code></pre>
+
+<p>This will create an entry in <code>/etc/exports</code>:</p>
+<pre><code># BEGIN XHYVE
+/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0
+# END XHYVE
+</code></pre>
+
+<p>And (re)start <code>nfsd</code></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials/bsd/" class="btn btn-neutral float-right" title="Bsd">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/0x414A/xhyve-manager/" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="tutorials/bsd/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.15.3
+Build Date UTC : 2016-05-17 21:17:24.593453
+-->

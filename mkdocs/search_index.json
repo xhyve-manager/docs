@@ -1,0 +1,44 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "xhyve-manager\n\n\nA simple utility to manage the lifecycle of \nxhyve\n Virtual Machines on OS X 10.10 and above.\n\n\nCommands\n\n\n\n\nxhyve-manager setup\n - setup up the host machine's NFS.\n\n\nxhyve-manager create\n - Create a new virtual machine.\n\n\nxhyve-manager start [machine-name]\n - start a virtual machine (must be run as root)\n\n\nxhyve-manager edit [machine-name]\n - edit the virtual machine configuration.\n\n\nxhyve-manager extract [path-to-iso]\n - helper command to convert a Linux ISO to something OS X can read\n\n\n\n\nInstallation\n\n\nYou need to be running OS X 10.10 and above.\n\n\nTo install:\n\n\ngit clone https://github.com/0x414A/xhyve-manager\ncd xhyve-manager\nmake install\n\n\n\n\nThen, you'll need to run \nsetup\n to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.\n\n\nsudo xhyve-manager setup\n\n\n\n\nThis will create an entry in \n/etc/exports\n:\n\n\n# BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE\n\n\n\n\nAnd (re)start \nnfsd", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#xhyve-manager", 
+            "text": "A simple utility to manage the lifecycle of  xhyve  Virtual Machines on OS X 10.10 and above.", 
+            "title": "xhyve-manager"
+        }, 
+        {
+            "location": "/#commands", 
+            "text": "xhyve-manager setup  - setup up the host machine's NFS.  xhyve-manager create  - Create a new virtual machine.  xhyve-manager start [machine-name]  - start a virtual machine (must be run as root)  xhyve-manager edit [machine-name]  - edit the virtual machine configuration.  xhyve-manager extract [path-to-iso]  - helper command to convert a Linux ISO to something OS X can read", 
+            "title": "Commands"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "You need to be running OS X 10.10 and above.  To install:  git clone https://github.com/0x414A/xhyve-manager\ncd xhyve-manager\nmake install  Then, you'll need to run  setup  to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.  sudo xhyve-manager setup  This will create an entry in  /etc/exports :  # BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE  And (re)start  nfsd", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/tutorials/bsd/", 
+            "text": "Installing FreeBSD 10.3\n\n\nDownload the \nFreeBSD 10.3\n bootonly ISO.\n\n\nCreate a new machine:\n\n\nxhyve-manager create\n\n\n\n\nThis will start a series of prompts where you can create a virtual disk and specify its size in GB, specify the name, etc.\n\n\nSpecify a CD to mount:\n\n\n\n\nThen you can start the machine:\n\n\nsudo xhyve-manager start [machine-name]\n\n\n\n\nOnce you've finished, edit the machine configuration to point \ninitrd\n to the virtual disk to boot into the new FreeBSD virtual machine!\n\n\n[boot]\nkernel = /usr/local/share/xhyve-manager/userboot.so\ninitrd = /Users/aj/VDisks/F00E5442-5F2F-4FCF-AF95-40BAB28BFEAD.img\noptions =", 
+            "title": "Bsd"
+        }, 
+        {
+            "location": "/tutorials/bsd/#installing-freebsd-103", 
+            "text": "Download the  FreeBSD 10.3  bootonly ISO.  Create a new machine:  xhyve-manager create  This will start a series of prompts where you can create a virtual disk and specify its size in GB, specify the name, etc.  Specify a CD to mount:   Then you can start the machine:  sudo xhyve-manager start [machine-name]  Once you've finished, edit the machine configuration to point  initrd  to the virtual disk to boot into the new FreeBSD virtual machine!  [boot]\nkernel = /usr/local/share/xhyve-manager/userboot.so\ninitrd = /Users/aj/VDisks/F00E5442-5F2F-4FCF-AF95-40BAB28BFEAD.img\noptions =", 
+            "title": "Installing FreeBSD 10.3"
+        }, 
+        {
+            "location": "/tutorials/linux/", 
+            "text": "Installing Ubuntu Server 16.04 LTS VM\n\n\nDownload\n Ubuntu Server 16.04 LTS.\n\n\nCurrently, in order for you first have to extract the kernel and initrd. OS X can't natively mount Linux live ISOs, so you have to run the following:\n\n\nxhyve-manager extract ~/Downloads/ubuntu-16.04-server-amd64.iso\nopen /tmp/tmp.iso\n\n\n\n\nThis will mount a disk \nUbuntu-Server 16\n.\n\n\nxhyve-manager create\n\n\n\n\nThis will invoke a series of prompts with which you can do the initial configuration for the virtual machine.\n\n\n\n\nSpecify a CD to mount:\n\n\n\n\nAt the end, you'll be prompted to edit the configuration. Type in \ny\n to invoke your favorite editor (well, whatever's set to your \n$EDITOR\n).\n\n\nOnce you've finished installation, change the boot options to these:\n\n\n[boot]\nkernel = boot/vmlinuz-4.4.0-21-generic\ninitrd = boot/initrd.img-4.4.0-21-generic\noptions = earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro", 
+            "title": "Linux"
+        }, 
+        {
+            "location": "/tutorials/linux/#installing-ubuntu-server-1604-lts-vm", 
+            "text": "Download  Ubuntu Server 16.04 LTS.  Currently, in order for you first have to extract the kernel and initrd. OS X can't natively mount Linux live ISOs, so you have to run the following:  xhyve-manager extract ~/Downloads/ubuntu-16.04-server-amd64.iso\nopen /tmp/tmp.iso  This will mount a disk  Ubuntu-Server 16 .  xhyve-manager create  This will invoke a series of prompts with which you can do the initial configuration for the virtual machine.   Specify a CD to mount:   At the end, you'll be prompted to edit the configuration. Type in  y  to invoke your favorite editor (well, whatever's set to your  $EDITOR ).  Once you've finished installation, change the boot options to these:  [boot]\nkernel = boot/vmlinuz-4.4.0-21-generic\ninitrd = boot/initrd.img-4.4.0-21-generic\noptions = earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro", 
+            "title": "Installing Ubuntu Server 16.04 LTS VM"
+        }
+    ]
+}
