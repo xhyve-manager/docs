@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/", 
-            "text": "xhyve-manager\n\n\nA simple utility to manage the lifecycle of \nxhyve\n Virtual Machines on OS X 10.10 and above.\n\n\nCommands\n\n\n\n\nxhyve-manager setup\n - setup up the host machine's NFS.\n\n\nxhyve-manager create\n - Create a new virtual machine.\n\n\nxhyve-manager start [machine-name]\n - start a virtual machine (must be run as root)\n\n\nxhyve-manager edit [machine-name]\n - edit the virtual machine configuration.\n\n\nxhyve-manager extract [path-to-iso]\n - helper command to convert a Linux ISO to something OS X can read\n\n\n\n\nInstallation\n\n\nYou need to be running OS X 10.10 and above.\n\n\nTo install:\n\n\ngit clone https://github.com/0x414A/xhyve-manager\ncd xhyve-manager\nmake install\n\n\n\n\nThen, you'll need to run \nsetup\n to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.\n\n\nsudo xhyve-manager setup\n\n\n\n\nThis will create an entry in \n/etc/exports\n:\n\n\n# BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE\n\n\n\n\nAnd (re)start \nnfsd", 
+            "text": "xhyve-manager\n\n\nA simple utility to manage the lifecycle of \nxhyve\n Virtual Machines on OS X 10.10 and above.\n\n\nCommands\n\n\n\n\nxhyve-manager setup\n - setup up the host machine's NFS.\n\n\nxhyve-manager create\n - Create a new virtual machine.\n\n\nxhyve-manager start [machine-name]\n - start a virtual machine (must be run as root)\n\n\nxhyve-manager edit [machine-name]\n - edit the virtual machine configuration.\n\n\nxhyve-manager extract [path-to-iso]\n - helper command to convert a Linux ISO to something OS X can read\n\n\n\n\nInstallation\n\n\nYou need to be running OS X 10.10 and above.\n\n\nTo install:\n\n\ngit clone https://github.com/xhyve-manager/xhyve-manager\ncd xhyve-manager\nmake install\n\n\n\n\nThen, you'll need to run \nsetup\n to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.\n\n\nsudo xhyve-manager setup\n\n\n\n\nThis will create an entry in \n/etc/exports\n:\n\n\n# BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE\n\n\n\n\nAnd (re)start \nnfsd", 
             "title": "Home"
         }, 
         {
@@ -17,7 +17,7 @@
         }, 
         {
             "location": "/#installation", 
-            "text": "You need to be running OS X 10.10 and above.  To install:  git clone https://github.com/0x414A/xhyve-manager\ncd xhyve-manager\nmake install  Then, you'll need to run  setup  to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.  sudo xhyve-manager setup  This will create an entry in  /etc/exports :  # BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE  And (re)start  nfsd", 
+            "text": "You need to be running OS X 10.10 and above.  To install:  git clone https://github.com/xhyve-manager/xhyve-manager\ncd xhyve-manager\nmake install  Then, you'll need to run  setup  to set up your host machine with the correct NFS configuration so as to be able to do 2-way sync of folders.  sudo xhyve-manager setup  This will create an entry in  /etc/exports :  # BEGIN XHYVE\n/Users -mapall=501 -network 192.168.64.0 -alldirs -mask 255.255.255.0\n# END XHYVE  And (re)start  nfsd", 
             "title": "Installation"
         }, 
         {
