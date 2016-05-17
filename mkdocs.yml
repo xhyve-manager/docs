@@ -1,0 +1,4 @@
+site_name: xhyve-manager 
+theme: readthedocs
+repo_url: https://github.com/0x414A/xhyve-manager/
+site_description: a simple utility to manage the lifecycle of xhyve virtual machines
